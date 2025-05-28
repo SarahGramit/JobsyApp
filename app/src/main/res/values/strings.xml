@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JobsyDashboard</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_add">Add</string>
+    <string name="title_messages">Messages</string>
+    <string name="jobs_posted">Jobs Posted</string>
+    <string name="see_all">See all</string>
+    <string name="applications">Applications</string>
+</resources>
