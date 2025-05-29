@@ -10,17 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileViewModel extends ViewModel {
-    private final MutableLiveData<List<JobItem>> jobList = new MutableLiveData<>();
+    private final MutableLiveData<List<Job>> jobList = new MutableLiveData<>();
 
     public ProfileViewModel() {
-        List<JobItem> jobs = new ArrayList<>();
-        jobs.add(new JobItem("UI/UX Designer", "$500", R.drawable.uiux));
-        jobs.add(new JobItem("Android Dev", "$600", R.drawable.uiux));
+        List<Job> jobs = new ArrayList<>();
+        jobs.add(new Job("001", "UI/UX Designer", "emp001", 500.0, R.drawable.uiux));
+        jobs.add(new Job("002", "Android Dev", "emp002", 600.0, R.drawable.uiux));
         jobList.setValue(jobs);
     }
 
-    public LiveData<List<JobItem>> getJobList() {
+    public LiveData<List<Job>> getJobList() {
         return jobList;
     }
 }
+
 

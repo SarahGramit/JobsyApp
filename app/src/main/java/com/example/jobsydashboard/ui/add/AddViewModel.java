@@ -6,14 +6,13 @@ import androidx.lifecycle.ViewModel;
 
 public class AddViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<Job> createdJob = new MutableLiveData<>();
 
-    public AddViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is add fragment");
+    public void setJob(Job job) {
+        createdJob.setValue(job);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Job> getJob() {
+        return createdJob;
     }
 }
