@@ -3,6 +3,7 @@ package com.example.jobsydashboard.ui.profile;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -116,19 +117,20 @@ import java.util.List;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     private List<Job> jobList;
+    private OnItemClickListener listener;
 
-    public JobAdapter(List<Job> jobList) {
-        this.jobList = jobList;
+    public interface OnItemClickListener {
+        void onItemClick(Job job);
     }
-    public void updateJobs(List<Job> jobs) {
-        jobList.clear();
-        jobList.addAll(jobs);
-        notifyDataSetChanged();
+
+    public JobAdapter(List<Job> jobList, OnItemClickListener listener) {
+        this.jobList = jobList;
+        this.listener = listener;
     }
 
     public void setJobList(List<Job> newList) {
         this.jobList = newList;
-        notifyDataSetChanged(); // Automatically refresh the UI
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -141,14 +143,12 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
         Job job = jobList.get(position);
-        holder.jobTitle.setText(job.getTitle());
-        holder.jobPrice.setText(String.format("Price: $%.2f", job.getPay()));
-        holder.jobImage.setImageResource(job.getImageResId());
+        holder.bind(job, listener);
     }
 
     @Override
     public int getItemCount() {
-         return jobList.size();
+        return jobList.size();
     }
 
     static class JobViewHolder extends RecyclerView.ViewHolder {
@@ -161,8 +161,17 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
             jobPrice = itemView.findViewById(R.id.jobPrice);
             jobImage = itemView.findViewById(R.id.jobImage);
         }
+
+        public void bind(Job job, OnItemClickListener listener) {
+            jobTitle.setText(job.getTitle());
+            jobPrice.setText(String.format("Price: $%.2f", job.getPay()));
+            jobImage.setImageResource(job.getImageResId());
+
+            itemView.setOnClickListener(v -> listener.onItemClick(job));
+        }
     }
 }
+
 
 
 

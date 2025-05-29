@@ -1,5 +1,6 @@
 package com.example.jobsydashboard.ui.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jobsydashboard.MainActivity2;
 import com.example.jobsydashboard.R;
 import com.example.jobsydashboard.databinding.FragmentAddBinding;
 import com.example.jobsydashboard.databinding.FragmentProfileBinding;
@@ -66,7 +68,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class ProfileFragment extends Fragment {
 
     private RecyclerView jobRecyclerView;
@@ -86,15 +87,26 @@ public class ProfileFragment extends Fragment {
 
         fullJobList = getAllJobs();
 
-        // Show only first 2 jobs initially or fewer if less than 2
+        // Show only the first 2 jobs initially
         List<Job> limitedList = fullJobList.subList(0, Math.min(2, fullJobList.size()));
 
-        jobAdapter = new JobAdapter(limitedList);
+        jobAdapter = new JobAdapter(limitedList, job -> {
+            Intent intent = new Intent(getContext(), MainActivity2.class);
+            intent.putExtra("job_data", job);
+            startActivity(intent);
+        });
+
         jobRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         jobRecyclerView.setAdapter(jobAdapter);
 
         seeAllText.setOnClickListener(v -> {
-            jobAdapter.setJobList(fullJobList);
+            // Replace the adapter with the full list when "See All" is clicked
+            jobAdapter = new JobAdapter(fullJobList, job -> {
+                Intent intent = new Intent(getContext(), MainActivity2.class);
+                intent.putExtra("job_data", job);
+                startActivity(intent);
+            });
+            jobRecyclerView.setAdapter(jobAdapter);
             seeAllText.setVisibility(View.GONE);
         });
 
@@ -107,10 +119,10 @@ public class ProfileFragment extends Fragment {
         jobs.add(new Job("124", "UI/UX Designer", "002", 500.0, R.drawable.uiux));
         jobs.add(new Job("125", "Backend Engineer", "003", 450.0, R.drawable.uiux));
         jobs.add(new Job("126", "Data Analyst", "004", 300.0, R.drawable.uiux));
-        // Add more jobs if you want
         return jobs;
     }
 }
+
 
 
 
