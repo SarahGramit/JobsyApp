@@ -4,24 +4,16 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.jobsydashboard.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProfileViewModel extends ViewModel {
-    private final MutableLiveData<List<Job>> jobList = new MutableLiveData<>();
+
+    private final MutableLiveData<String> mText;
 
     public ProfileViewModel() {
-        List<Job> jobs = new ArrayList<>();
-        jobs.add(new Job("001", "UI/UX Designer", "emp001", 500.0, R.drawable.uiux));
-        jobs.add(new Job("002", "Android Dev", "emp002", 600.0, R.drawable.uiux));
-        jobList.setValue(jobs);
+        mText = new MutableLiveData<>();
+        mText.setValue("This is home fragment");
     }
 
-    public LiveData<List<Job>> getJobList() {
-        return jobList;
+    public LiveData<String> getText() {
+        return mText;
     }
 }
-
-

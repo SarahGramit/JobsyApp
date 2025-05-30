@@ -8,8 +8,13 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.jobsydashboard.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_jobs"
+        android:name="com.example.jobsydashboard.ui.jobs.JobsFragment"
+        android:label="@string/title_jobs"
+        tools:layout="@layout/fragment_jobs" />
 
 
     <fragment

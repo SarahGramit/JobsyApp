@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         // Définir les destinations principales (pas de flèche retour)
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_profile,
+                R.id.navigation_jobs,
                 R.id.navigation_add,
                 R.id.navigation_messages
         ).build();

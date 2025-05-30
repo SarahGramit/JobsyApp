@@ -1,4 +1,4 @@
-package com.example.jobsydashboard.ui.profile;
+package com.example.jobsydashboard.ui.jobs;
 //old
 //public class JobItem {
 //    private String title;
