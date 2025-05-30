@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "549647119872",
+    "project_id": "employerside-72126",
+    "storage_bucket": "employerside-72126.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549647119872:android:4375a4cb74f378c830cae5",
+        "android_client_info": {
+          "package_name": "com.example.jobsydashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM2QupjbZS5Du29gspQBAHtJ4AV2hthnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
